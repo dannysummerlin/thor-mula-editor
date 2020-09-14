@@ -1,6 +1,9 @@
 swapEditor = ()=>{
 	var formulaEditorOuter = document.getElementsByClassName('formulaEditorOuter')
 	if(formulaEditorOuter.length > 0) {
+		const fields = Object.values(document.getElementById('fieldSelector').options)
+			.map((e)=>{return {label: "Field: " + e.text, value: e.value}})
+		fields.shift()
 		formulaEditorOuter = formulaEditorOuter[0]
 		let formulaEditor = formulaEditorOuter.getElementsByTagName('textarea')[0]
 		const content = formulaEditor.value
@@ -14,7 +17,7 @@ swapEditor = ()=>{
 			</div>`,
 			data: {
 				content: content,
-				functionValues: functionValues,
+				functionValues: functionValues.concat(fields),
 				triggerKeys: ['?']
 				// triggerKeys: ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 			},
@@ -23,8 +26,9 @@ swapEditor = ()=>{
 					return Prism.highlight(code, Prism.languages.js, "excel-formula")
 				},
 				updateRealValue(i,s) {
-					console.log(i == this.content, this.content, formulaEditor)
-					formulaEditor.value = this.content
+					// console.log(i == this.content, this.content, formulaEditor)
+					formulaEditor.innerHTML = this.content
+					formulaEditor.dispatchEvent(new KeyboardEvent('keyup'))
 				}
 			}
 		})
