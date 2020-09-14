@@ -4,7 +4,7 @@
   --fontFace: SourceCodePro, Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   --fontSize: 14px;
 }
-/*#app { background: #f5f2f0 }*/
+/*#app { background: #f5f2f0 } TODO add styling options */
 @font-face {
   font-family: SourceCodePro;
   src: url(fonts/SourceCodePro-Regular.ttf), url(fonts/SourceCodePro-Bold.ttf);

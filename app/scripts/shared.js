@@ -1,3 +1,4 @@
+//TODO add missing functions
 const functionMap = {
 	"BEGINS": [
 		"BEGINS(text,compare_text)",
@@ -235,33 +236,3 @@ Object.keys(functionMap).map((f) => {
 	const v = functionMap[f]
 	functionValues.push({ label: f + ": " + v[2], value: v[0]})
 })
-
-const demoCode = `CASE(
-IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_nsopw'), 1, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_service'), 2, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_residence'), 4, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_fbi'), 8, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_international'), 16, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_nsopw'), 32, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_service'), 64, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_residence'), 128, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_fbi'), 256, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_international'), 512, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'ack'), 1024, 0),
-1024, "Acknowledgement",
-1280, "Non-Accompaniment",
-0, "Cleared for Training and Service",
-"Not Cleared")
-/*
-Text( IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_nsopw'), 1, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_service'), 2, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_residence'), 4, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_fbi'), 8, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'init_international'), 16, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_nsopw'), 32, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_service'), 64, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_residence'), 128, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_fbi'), 256, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'clear_international'), 512, 0)
-+ IF(CONTAINS(History_Check_Incomplete_Components__c, 'ack'), 1024, 0)))
-*/`
