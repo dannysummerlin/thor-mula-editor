@@ -1,6 +1,7 @@
 swapEditor = ()=>{
 	var formulaEditorOuter = document.getElementsByClassName('formulaEditorOuter')
-	if(formulaEditorOuter.length > 0) {
+	var insertFieldButton = document.querySelector('input[name=insertField]') // don't replace the advanced editor
+	if(formulaEditorOuter.length > 0 && insertFieldButton == null) {
 		const fieldSelector = document.getElementById('fieldSelector')
 		let fields = []
 		if(fieldSelector) {
@@ -16,14 +17,24 @@ swapEditor = ()=>{
 		Vue.use(VueMention)
 		var app = new Vue({
 			template: `
-			<div id="app">
+			<div id="app" :class="theme">
 				<Mentionable :keys="triggerKeys" :items="functionValues" placement="auto" omit-key>
 					<prism-editor class="height-400" v-model="content" :highlight="highlighter" @input="updateRealValue" line-numbers></prism-editor>
 				</Mentionable>
+				<select v-model="theme" class="themeSelector">
+					<option v-for="t in themes" v-bind:value="t.value">
+						{{ t.label }}
+					</option>
+				</select>
 			</div>`,
 			data: {
 				content: content,
 				functionValues: functionValues.concat(fields),
+				themes: [
+					{value: 'okaidia', label: 'Dark Mode'},
+					{value: 'coy', label: 'Light Mode'}
+				],
+				theme: 'okaidia',
 				triggerKeys: ['?']
 			},
 			methods: {

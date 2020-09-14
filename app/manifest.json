@@ -28,14 +28,12 @@
 		"cookies"
 	],
 	"background": {
-		"scripts": [
-			"scripts/shared.js",
-			"scripts/background.js"
-		]
+		"scripts": []
 	},
 	"content_scripts": [{
 		"css": [
 			"styles/prismeditor.min.css",
+			"styles/prism-coy.css",
 			"styles/prism-okaidia.css",
 			"styles/main.css"
 

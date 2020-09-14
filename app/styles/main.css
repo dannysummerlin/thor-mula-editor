@@ -1,21 +1,16 @@
 :root {
-  --bg-color: #2d2d2d;
-  --fg-color: #f8f8f2;
   --fontFace: SourceCodePro, Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   --fontSize: 14px;
 }
-/*#app { background: #f5f2f0 } TODO add styling options */
 @font-face {
   font-family: SourceCodePro;
   src: url(fonts/SourceCodePro-Regular.ttf), url(fonts/SourceCodePro-Bold.ttf);
 }
 #app {
+  margin-top: 4px;
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
-  background:  var(--bg-color);
 }
-#app pre { color: var(--fg-color) }
-#app textarea { caret-color: var(--fg-color) }
 .tooltip {
   display: block !important;
   z-index: 10000;
@@ -116,10 +111,15 @@
   opacity: 1;
   transition: opacity .15s;
 }
+/* TODO - change menu color with theme */
 .mention-item {
   padding: 4px 10px;
   border-radius: 4px;
 }
-.mention-item span { background: red !important }
 .mention-selected { background: rgb(192, 250, 153); }
 .height-400{ height: 400px }
+#app .themeSelector {
+  left: 8em;
+  position: absolute;
+  margin-top: 2px;
+}
