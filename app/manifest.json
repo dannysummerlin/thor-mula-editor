@@ -1,0 +1,61 @@
+{
+	"name": "Thor-mula Editor for Salesforce",
+	"description": "asdf!",
+	"version": "0.1",
+	"manifest_version": 2,
+	"page_action": {
+		"default_icon": "images/sf-navigator32.png",
+		"default_popup": "editor.html",
+		"default_title": "Thor-mula Editor for Salesforce"
+	},
+	"icons": {
+		"16": "images/sf-navigator16.png",
+		"32": "images/sf-navigator32.png",
+		"48": "images/sf-navigator48.png",
+		"128": "images/sf-navigator128.png"
+	},
+	"web_accessible_resources": [
+		"images/ajax-loader.gif",
+		"images/sf-navigator128.png"
+	],
+	"commands": {},
+	"permissions": [
+		"activeTab",
+		"https://*.force.com/*",
+		"https://*.salesforce.com/*",
+		"https://*.cloudforce.com/*",
+		"storage",
+		"cookies"
+	],
+	"background": {
+		"scripts": [
+			"scripts/shared.js",
+			"scripts/background.js"
+		]
+	},
+	"content_scripts": [{
+		"css": [
+			"styles/prismeditor.min.css",
+			"styles/prism-okaidia.css",
+			"styles/main.css"
+
+		],
+		"matches": [
+			"https://*.force.com/*",
+			"https://*.salesforce.com/*",
+			"https://*.cloudforce.com/*"
+		],
+		"all_frames": true,
+		"js": [
+			"scripts/shared.js",
+			"scripts/vue.min.js",
+			"scripts/textarea-caret.js",
+			"scripts/v-tooltip.min.js",
+			"scripts/vue-mention.js",
+			"scripts/vue-prism-editor.min.js",
+			"scripts/prism.js",
+			"scripts/app.js"
+		],
+		"run_at": "document_end"
+	}]
+}

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+	<div id="app">
+		<Mentionable :keys="triggerKeys" :items="functionValues" placement="auto" omit-key>
+			<prism-editor class="height-400" v-model="code" :highlight="highlighter" line-numbers></prism-editor>
+		</Mentionable>
+	</div>
+</body>
+</html>
