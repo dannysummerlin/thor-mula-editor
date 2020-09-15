@@ -1,6 +1,8 @@
 :root {
   --fontFace: SourceCodePro, Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   --fontSize: 14px;
+  --caretPositionY: 0px;
+  --caretPositionX: 0px;
 }
 @font-face {
   font-family: SourceCodePro;
@@ -11,10 +13,14 @@
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
 }
+#app textarea {outline: none !important;}
 .tooltip {
   display: block !important;
   z-index: 10000;
-  margin-top:10px;
+  position: absolute !important;
+  top: var(--caretPositionY) !important;
+  left: var(--caretPositionX) !important;
+  transform: unset !important;
 }
 .tooltip .tooltip-inner {
   background: black;
@@ -116,10 +122,15 @@
   padding: 4px 10px;
   border-radius: 4px;
 }
-.mention-selected { background: rgb(192, 250, 153); }
+.mention-selected { background: #bf5a88; }
 .height-400{ height: 400px }
-#app .themeSelector {
+#app .controls {
   left: 8em;
   position: absolute;
   margin-top: 2px;
+}
+#app .prism-editor__line-numbers {
+  font-size:var(--fontSize) !important;
+  font-family: var(--fontFamily) !important;
+  line-height: 1.2em !important;
 }

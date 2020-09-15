@@ -15,8 +15,12 @@
 		"128": "images/sf-navigator128.png"
 	},
 	"web_accessible_resources": [
-		"images/ajax-loader.gif",
-		"images/sf-navigator128.png"
+		"styles/fonts/SourceCodePro-Regular.ttf",
+		"styles/fonts/SourceCodePro-Bold.ttf",
+		"styles/prismeditor.min.css",
+		"styles/prism-coy.css",
+		"styles/prism-okaidia.css",
+		"styles/main.css"
 	],
 	"commands": {},
 	"permissions": [
@@ -31,13 +35,7 @@
 		"scripts": []
 	},
 	"content_scripts": [{
-		"css": [
-			"styles/prismeditor.min.css",
-			"styles/prism-coy.css",
-			"styles/prism-okaidia.css",
-			"styles/main.css"
-
-		],
+		"css": [],
 		"matches": [
 			"https://*.force.com/*",
 			"https://*.salesforce.com/*",
