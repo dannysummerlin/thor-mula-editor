@@ -1,7 +1,8 @@
-.coy code[class*="language-"], .coy pre[class*="language-"] { color: black; background: none; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; }
+#app.coy { background: #fff; }
+
+/*.coy code[class*="language-"], .coy pre[class*="language-"] { color: black; background: none; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; }
 .coy pre[class*="language-"] { position: relative; margin: 0.5em 0px; overflow: visible; padding: 0px; }
 .coy pre[class*="language-"] > code { position: relative; border-left: 10px solid rgb(53, 140, 203); box-shadow: rgb(53, 140, 203) -1px 0px 0px 0px, rgb(223, 223, 223) 0px 0px 0px 1px; background-color: rgb(253, 253, 253); background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%); background-size: 3em 3em; background-origin: content-box; background-attachment: local; }
-#app.coy { background: #fff; }
 .coy code[class*="language-"] { max-height: inherit; height: inherit; padding: 0px 1em; display: block; overflow: auto; }
 .coy :not(pre) > code[class*="language-"], .coy pre[class*="language-"] { background-color: rgb(253, 253, 253); box-sizing: border-box; margin-bottom: 1em; }
 .coy :not(pre) > code[class*="language-"] { position: relative; padding: 0.2em; border-radius: 0.3em; color: rgb(201, 44, 44); border: 1px solid rgba(0, 0, 0, 0.1); display: inline; white-space: normal; }
@@ -28,4 +29,283 @@
 .coy pre[class*="language-"].line-numbers.line-numbers .line-numbers-rows { left: 0px; }
 .coy pre[class*="language-"][data-line] { padding-top: 0px; padding-bottom: 0px; padding-left: 0px; }
 .coy pre[data-line] code { position: relative; padding-left: 4em; }
-.coy pre .line-highlight { margin-top: 0px; }
+.coy pre .line-highlight { margin-top: 0px; }*/
+
+.coy code[class*="language-"],
+.coy pre[class*="language-"] {
+	color: black;
+	background: none;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+.coy pre[class*="language-"] {
+	position: relative;
+	margin: .5em 0;
+	overflow: visible;
+	padding: 0;
+}
+.coy pre[class*="language-"]>code {
+	position: relative;
+	border-left: 10px solid #358ccb;
+	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	background-color: #fdfdfd;
+	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-size: 3em 3em;
+	background-origin: content-box;
+	background-attachment: local;
+}
+
+.coy code[class*="language-"] {
+	max-height: inherit;
+	height: inherit;
+	padding: 0 1em;
+	display: block;
+	overflow: auto;
+}
+
+/* Margin bottom to accommodate shadow */
+.coy :not(pre) > code[class*="language-"],
+.coy pre[class*="language-"] {
+	background-color: #fdfdfd;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-bottom: 1em;
+}
+
+/* Inline code */
+.coy :not(pre) > code[class*="language-"] {
+	position: relative;
+	padding: .2em;
+	border-radius: 0.3em;
+	color: #c92c2c;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	display: inline;
+	white-space: normal;
+}
+
+.coy pre[class*="language-"]:before,
+.coy pre[class*="language-"]:after {
+	content: '';
+	z-index: -2;
+	display: block;
+	position: absolute;
+	bottom: 0.75em;
+	left: 0.18em;
+	width: 40%;
+	height: 20%;
+	max-height: 13em;
+	box-shadow: 0px 13px 8px #979797;
+	-webkit-transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
+
+.coy pre[class*="language-"]:after {
+	right: 0.75em;
+	left: auto;
+	-webkit-transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+	transform: rotate(2deg);
+}
+
+.coy .token.comment,
+.coy .token.block-comment,
+.coy .token.prolog,
+.coy .token.doctype,
+.coy .token.cdata {
+	color: #7D8B99;
+}
+
+.coy .token.punctuation {
+	color: #5F6364;
+}
+
+.coy .token.property,
+.coy .token.tag,
+.coy .token.boolean,
+.coy .token.number,
+.coy .token.function-name,
+.coy .token.constant,
+.coy .token.symbol,
+.coy .token.deleted {
+	color: #c92c2c;
+}
+
+.coy .token.selector,
+.coy .token.attr-name,
+.coy .token.string,
+.coy .token.char,
+.coy .token.function,
+.coy .token.builtin,
+.coy .token.inserted {
+	color: #2f9c0a;
+}
+
+.coy .token.operator,
+.coy .token.entity,
+.coy .token.url,
+.coy .token.variable {
+	color: #a67f59;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.coy .token.atrule,
+.coy .token.attr-value,
+.coy .token.keyword,
+.coy .token.class-name {
+	color: #1990b8;
+}
+
+.coy .token.regex,
+.coy .token.important {
+	color: #e90;
+}
+
+.coy .language-css .token.string,
+.coy .style .token.string {
+	color: #a67f59;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.coy .token.important {
+	font-weight: normal;
+}
+
+.coy .token.bold {
+	font-weight: bold;
+}
+.coy .token.italic {
+	font-style: italic;
+}
+
+.coy .token.entity {
+	cursor: help;
+}
+
+.coy .token.namespace {
+	opacity: .7;
+}
+
+@media screen and (max-width: 767px) {
+	.coy pre[class*="language-"]:before,
+	.coy pre[class*="language-"]:after {
+		bottom: 14px;
+		box-shadow: none;
+	}
+
+}
+
+/* Plugin styles: Line Numbers */
+.coy pre[class*="language-"].line-numbers.line-numbers {
+	padding-left: 0;
+}
+
+.coy pre[class*="language-"].line-numbers.line-numbers code {
+	padding-left: 3.8em;
+}
+
+.coy pre[class*="language-"].line-numbers.line-numbers .line-numbers-rows {
+	left: 0;
+}
+
+/* Plugin styles: Line Highlight */
+.coy pre[class*="language-"][data-line] {
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+.coy pre[data-line] code {
+	position: relative;
+	padding-left: 4em;
+}
+.coy pre .line-highlight {
+	margin-top: 0;
+}
+
+.coy .token.tab:not(:empty),
+.coy .token.cr,
+.coy .token.lf,
+.coy .token.space {
+	position: relative;
+}
+
+.coy .token.tab:not(:empty):before,
+.coy .token.cr:before,
+.coy .token.lf:before,
+.coy .token.space:before {
+	color: #808080;
+	opacity: 0.6;
+	position: absolute;
+}
+
+.coy .token.tab:not(:empty):before {
+	content: '\21E5';
+}
+
+.coy .token.cr:before {
+	content: '\240D';
+}
+
+.coy .token.crlf:before {
+	content: '\240D\240A';
+}
+.coy .token.lf:before {
+	content: '\240A';
+}
+
+.coy .token.space:before {
+	content: '\00B7';
+}
+
+.coy .token.punctuation.brace-hover,
+.coy .token.punctuation.brace-selected {
+	outline: solid 1px;
+}
+
+.coy .rainbow-braces .token.punctuation.brace-level-1,
+.coy .rainbow-braces .token.punctuation.brace-level-5,
+.coy .rainbow-braces .token.punctuation.brace-level-9 {
+	color: #E50;
+	opacity: 1;
+}
+.coy .rainbow-braces .token.punctuation.brace-level-2,
+.coy .rainbow-braces .token.punctuation.brace-level-6,
+.coy .rainbow-braces .token.punctuation.brace-level-10 {
+	color: #0B3;
+	opacity: 1;
+}
+.coy .rainbow-braces .token.punctuation.brace-level-3,
+.coy .rainbow-braces .token.punctuation.brace-level-7,
+.coy .rainbow-braces .token.punctuation.brace-level-11 {
+	color: #26F;
+	opacity: 1;
+}
+.coy .rainbow-braces .token.punctuation.brace-level-4,
+.coy .rainbow-braces .token.punctuation.brace-level-8,
+.coy .rainbow-braces .token.punctuation.brace-level-12 {
+	color: #E0E;
+	opacity: 1;
+}
+

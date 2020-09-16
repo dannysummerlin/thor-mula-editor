@@ -1,18 +1,18 @@
 {
-	"name": "Thor-mula Editor for Salesforce",
-	"description": "asdf!",
-	"version": "0.1",
+	"name": "EditorElectric for Salesforce",
+	"description": "Electrify your formulas with EditorElectric - get suggested functions and object fields with the '?' key, adds syntax highlighting and colors in dark and light mode, and adjust font size",
+	"version": "1.0",
 	"manifest_version": 2,
 	"page_action": {
-		"default_icon": "images/sf-navigator32.png",
-		"default_popup": "editor.html",
-		"default_title": "Thor-mula Editor for Salesforce"
+		"default_icon": "images/sf-editorelectric32.png",
+		"default_popup": "popup.html",
+		"default_title": "EditorElectric Editor for Salesforce"
 	},
 	"icons": {
-		"16": "images/sf-navigator16.png",
-		"32": "images/sf-navigator32.png",
-		"48": "images/sf-navigator48.png",
-		"128": "images/sf-navigator128.png"
+		"16": "images/sf-editorelectric16.png",
+		"32": "images/sf-editorelectric32.png",
+		"48": "images/sf-editorelectric48.png",
+		"128": "images/sf-editorelectric128.png"
 	},
 	"web_accessible_resources": [
 		"styles/fonts/SourceCodePro-Regular.ttf",
@@ -48,8 +48,9 @@
 			"scripts/textarea-caret.js",
 			"scripts/v-tooltip.min.js",
 			"scripts/vue-mention.js",
-			"scripts/vue-prism-editor.min.js",
 			"scripts/prism.js",
+			"scripts/language-salesforce.js",
+			"scripts/vue-prism-editor.min.js",
 			"scripts/app.js"
 		],
 		"run_at": "document_end"

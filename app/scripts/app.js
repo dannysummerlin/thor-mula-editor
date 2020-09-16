@@ -29,7 +29,9 @@ swapEditor = ()=>{
 		Vue.use(VueMention)
 		var app = new Vue({
 			template: `
-			<div id="app" :class="theme">
+			<div id="app" :class="theme + ' highlight-keywords match-braces rainbow-braces'">
+				<header data-plugin-header="highlight-keywords"></header>
+				<header data-plugin-header="show-invisibles"></header>
 				<Mentionable ref="suggestions" :keys="triggerKeys" @caret="updateCaretPosition" :items="functionValues" placement="right-start" omit-key>
 					<prism-editor id="thorEditor" ref="editor" class="height-400" v-model="content" :highlight="highlighter" @input="updateRealValue" line-numbers></prism-editor>
 				</Mentionable>
@@ -57,7 +59,7 @@ swapEditor = ()=>{
 			},
 			methods: {
 				highlighter(code) {
-					return Prism.highlight(code, Prism.languages.js, "excel-formula")
+					return Prism.highlight(code, Prism.languages.sfdx, "sfdx")
 				},
 				updateCaretPosition(o) {
 					const p = this.getCursorXY(o.input,o.selectionEnd)
