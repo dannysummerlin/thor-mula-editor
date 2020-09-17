@@ -25,7 +25,7 @@ swapEditor = ()=>{
 	if(formulaEditorOuter && insertFieldButton == null) {
 		let fieldSelector = document.getElementById('fieldSelector')
 		let fields = []
-		if(fieldSelector) {
+		if(fieldSelector && fieldSelector.options) {
 			fields = Object.values(fieldSelector.options)
 				.map((e)=>{return {label: "Field: " + e.text, value: e.value}})
 			fields.shift()
@@ -56,6 +56,7 @@ swapEditor = ()=>{
 				</div>`,
 				data: {
 					content: content,
+					originalContent: content,
 					fontSize: 14,
 					functionValues: functionValues.concat(fields),
 					themes: [
@@ -71,6 +72,12 @@ swapEditor = ()=>{
 					triggerKeys: ['?']
 				},
 				mounted() {
+					window.addEventListener('beforeunload', (event)=>{
+						if(this.content != this.originalContent) {
+							event.preventDefault()
+							return event.returnValue = confirm("Are you sure you want to navigate away? Changes will not be saved.")
+						}
+					}, {capture: true})
 					this.$children[0].input.addEventListener('keyup', this.updateSourcePosition)
 					this.$children[0].input.addEventListener('mouseup', this.updateSourcePosition)
 				},
