@@ -12,7 +12,9 @@
 })
 
 swapEditor = ()=>{
-	var formulaEditorOuter = document.getElementsByClassName('formulaEditorOuter')
+	var formulaEditorOuter = document.getElementsByClassName('formulaEditorOuter') //formula editor
+	if(!formulaEditorOuter.length)
+		formulaEditorOuter = document.getElementsByClassName('pbWizardBody') // new formula
 	var insertFieldButton = document.querySelector('input[name=insertField]') // don't replace the advanced editor
 	if(formulaEditorOuter.length > 0 && insertFieldButton == null) {
 		const fieldSelector = document.getElementById('fieldSelector')
