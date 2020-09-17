@@ -13,7 +13,12 @@
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
 }
-#app textarea {outline: none !important;}
+#app input,
+#app select,
+#app button { color: #111; }
+#app textarea { outline: none !important }
+#app .prism-editor-wrapper { margin-top:-16px }
+#modal-content-id #app .prism-editor-wrapper { margin-top:-4px!important }
 .tooltip {
   display: block !important;
   z-index: 10000;
@@ -133,4 +138,5 @@
   font-size:var(--fontSize) !important;
   font-family: var(--fontFamily) !important;
   line-height: 1.2em !important;
+  margin-top: 0 !important;
 }
