@@ -19,6 +19,7 @@
 #app textarea { outline: none !important }
 #app .prism-editor-wrapper { margin-top:-16px }
 #modal-content-id #app .prism-editor-wrapper { margin-top:-4px!important }
+#editPage #app .prism-editor-wrapper { margin-top:-8px!important }
 .tooltip {
   display: block !important;
   z-index: 10000;

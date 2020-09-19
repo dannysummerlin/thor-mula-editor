@@ -16,11 +16,18 @@ swapEditor = ()=>{
 	if(app)
 		app.$destroy()
 	var formulaEditorOuter = document.getElementsByClassName('formulaEditorOuter')[0] //formula editor
+	var insertFieldButton = null
+	if(formulaEditorOuter)
+		insertFieldButton = document.querySelector('input[name=insertField]') // don't replace the advanced editor
 	if(!formulaEditorOuter)
 		formulaEditorOuter = document.getElementsByClassName('pbWizardBody')[0] // new formula
+	if(!formulaEditorOuter) {
+		formulaEditorOuter = document.getElementById('ValidationFormula')?.parentElement // validation rule
+		if(formulaEditorOuter)
+			formulaEditorOuter.closest('table').style.width = "100%"
+	}
 	if(!formulaEditorOuter)
 		formulaEditorOuter = document.querySelector('div[builder_platform_interaction-resourcedtextarea_resourcedtextarea].property-input')
-	var insertFieldButton = document.querySelector('input[name=insertField]') // don't replace the advanced editor
 
 	if(formulaEditorOuter && insertFieldButton == null) {
 		let fieldSelector = document.getElementById('fieldSelector')
@@ -31,6 +38,7 @@ swapEditor = ()=>{
 			fields.shift()
 		}
 		formulaEditor = formulaEditorOuter.getElementsByTagName('textarea')[0]
+
 		if(formulaEditor) {
 			const content = formulaEditor.value
 			Vue.use(VTooltip)
@@ -69,15 +77,16 @@ swapEditor = ()=>{
 					y: 0,
 					formulaEditor: formulaEditor,
 					formulaEditorOuter: formulaEditorOuter,
+					isSaving: false,
 					triggerKeys: ['?']
 				},
 				mounted() {
-					window.addEventListener('beforeunload', (event)=>{
-						if(this.content != this.originalContent) {
-							event.preventDefault()
-							return event.returnValue = confirm("Are you sure you want to navigate away? Changes will not be saved.")
-						}
-					}, {capture: true})
+					// window.addEventListener('beforeunload', (event)=>{
+					// 	if(this.content != this.originalContent && !this.isSaving) {
+					// 		event.preventDefault()
+					// 		event.returnValue = ''
+					// 	}
+					// }, {capture: true})
 					this.$children[0].input.addEventListener('keyup', this.updateSourcePosition)
 					this.$children[0].input.addEventListener('mouseup', this.updateSourcePosition)
 				},
@@ -144,6 +153,12 @@ swapEditor = ()=>{
 	}
 }
 const checkClicks = (e)=>{
+	// if(app && e.target.type == 'submit' && e.target.title.includes('Save'))
+	// 	app.isSaving = true
+	// if(app && app.content != app.originalContent && e.target.type == 'submit' && e.target.title.includes('Cancel')) {
+	// 	e.preventDefault()
+	// 	return confirm("Are you sure you want to navigate away? Changes will not be saved.")
+	// }
 	if(e.target.tagName.toLowerCase() == 'a')
 		setTimeout(swapEditor, 400)
 	else {
