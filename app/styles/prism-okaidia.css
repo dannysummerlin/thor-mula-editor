@@ -3,9 +3,18 @@
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
  * @author ocodia
  */
-#app.okaidia {background: #2d2d2d; color: #f8f8f2; }
-#app.okaidia pre { color: #f8f8f2 }
-#app.okaidia textarea { caret-color: #f8f8f2 }
+:root {
+	--normalText: #f8f8f2;
+	--colorOk2: #f92672;
+	--colorOk3: #ae81ff;
+	--colorOk4: #a6e22e;
+	--colorOk5: #e6db74;
+	--colorOk6: #66d9ef;
+	--colorOk7: #fd971f;
+}
+#app.okaidia {background: #2d2d2d; color: var(--normalText); }
+#app.okaidia pre { color: var(--normalText) }
+#app.okaidia textarea { caret-color: var(--normalText) }
 /* PrismJS 1.21.0
 https://prismjs.com/download.html#themes=prism-okaidia&languages=excel-formula+sql&plugins=show-invisibles+highlight-keywords+match-braces */
 /**
@@ -16,7 +25,7 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=excel-formula+s
 
 .okaidia code[class*="language-"],
 .okaidia pre[class*="language-"] {
-	color: #f8f8f2;
+	color: var(--normalText);
 	background: none;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -66,7 +75,7 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=excel-formula+s
 }
 
 .okaidia .token.punctuation {
-	color: #f8f8f2;
+	color: var(--normalText);
 }
 
 .okaidia .token.namespace {
@@ -78,12 +87,12 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=excel-formula+s
 .okaidia .token.constant,
 .okaidia .token.symbol,
 .okaidia .token.deleted {
-	color: #f92672;
+	color: var(--colorOk7);
 }
 
 .okaidia .token.boolean,
 .okaidia .token.number {
-	color: #ae81ff;
+	color: var(--colorOk3);
 }
 
 .okaidia .token.selector,
@@ -92,32 +101,32 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=excel-formula+s
 .okaidia .token.char,
 .okaidia .token.builtin,
 .okaidia .token.inserted {
-	color: #a6e22e;
+	color: var(--colorOk4);
 }
 
-.okaidia .token.operator,
 .okaidia .token.entity,
 .okaidia .token.url,
 .okaidia .language-css .token.string,
 .okaidia .style .token.string,
 .okaidia .token.variable {
-	color: #f8f8f2;
+	color: var(--normalText);
 }
 
+.okaidia .token.operator,
 .okaidia .token.atrule,
 .okaidia .token.attr-value,
-.okaidia .token.function,
 .okaidia .token.class-name {
-	color: #e6db74;
+	color: var(--colorOk6);
 }
 
+.okaidia .token.function,
 .okaidia .token.keyword {
-	color: #66d9ef;
+	color: var(--colorOk2);
 }
 
 .okaidia .token.regex,
 .okaidia .token.important {
-	color: #fd971f;
+	color: var(--colorOk7);
 }
 
 .okaidia .token.important,

@@ -27,7 +27,8 @@ swapEditor = ()=>{
 			formulaEditorOuter.closest('table').style.width = "100%"
 	}
 	if(!formulaEditorOuter)
-		formulaEditorOuter = document.querySelector('div[builder_platform_interaction-resourcedtextarea_resourcedtextarea].property-input')
+		formulaEditorOuter = document.querySelector('div[builder_platform_interaction-resourcedtextarea_resourcedtextarea].property-input') // flow editor
+console.log(formulaEditorOuter)
 
 	if(formulaEditorOuter && insertFieldButton == null) {
 		let fieldSelector = document.getElementById('fieldSelector')
@@ -81,12 +82,6 @@ swapEditor = ()=>{
 					triggerKeys: ['?']
 				},
 				mounted() {
-					// window.addEventListener('beforeunload', (event)=>{
-					// 	if(this.content != this.originalContent && !this.isSaving) {
-					// 		event.preventDefault()
-					// 		event.returnValue = ''
-					// 	}
-					// }, {capture: true})
 					this.$children[0].input.addEventListener('keyup', this.updateSourcePosition)
 					this.$children[0].input.addEventListener('mouseup', this.updateSourcePosition)
 				},
@@ -153,17 +148,11 @@ swapEditor = ()=>{
 	}
 }
 const checkClicks = (e)=>{
-	// if(app && e.target.type == 'submit' && e.target.title.includes('Save'))
-	// 	app.isSaving = true
-	// if(app && app.content != app.originalContent && e.target.type == 'submit' && e.target.title.includes('Cancel')) {
-	// 	e.preventDefault()
-	// 	return confirm("Are you sure you want to navigate away? Changes will not be saved.")
-	// }
-	if(e.target.tagName.toLowerCase() == 'a')
-		setTimeout(swapEditor, 400)
+	if(e.target.tagName == 'A' || (e.target.tagName == 'SPAN' && e.target.textContent == 'Formula')) // used in Flow editor to detect when a formula is added or opened
+		setTimeout(swapEditor, 300)
 	else {
 		let selection = e.path.filter((s)=>{ return s.tagName?.toLowerCase() == 'lightning-base-combobox-item'})[0]
-		if(!selection && e.target.tagName?.toLowerCase() == 'select')
+		if(!selection && e.target.tagName == 'SELECT')
 			selection = e.target
 		if(selection && app)
 			setTimeout(app.pullFromSource, 200)
