@@ -46,10 +46,8 @@ swapEditor = ()=>{
 			app = new Vue({
 				template: `
 				<div id="app" :class="theme">
-					<header data-plugin-header="highlight-keywords"></header>
-					<header data-plugin-header="show-invisibles"></header>
 					<Mentionable ref="suggestions" :keys="triggerKeys" @caret="updateCaretPosition" :items="functionValues" placement="right-start" omit-key>
-						<prism-editor id="thorEditor" ref="editor" class="height-400" v-model="content" :highlight="highlighter" @input="pushToSource" line-numbers></prism-editor>
+						<prism-editor id="thorEditor" ref="editor" class="height-400 highlight-keywords show-invisibles match-braces language-sfdx" v-model="content" :highlight="highlighter" @input="pushToSource" line-numbers></prism-editor>
 					</Mentionable>
 					<div class="controls" style="font-size:14px">
 						<select v-model="theme" class="themeSelector">
@@ -90,7 +88,7 @@ swapEditor = ()=>{
 						return Prism.highlight(code, Prism.languages.sfdx, "sfdx")
 					},
 					updateSourcePosition(o) {
-						// add more controls, like reverse indent
+						// TODO add more controls, like reverse indent
 						// if(o.ctrlKey) {
 						// 	if(o.key == "[")
 
@@ -155,19 +153,17 @@ swapEditor = ()=>{
 		}
 	}
 }
-let checkClicks = (e)=>{
+const checkClicks = (e)=>{
 	if(e.target.className.includes('prism-editor-wrapper'))
 		app.focusEditor()
-	else if(e.target.tagName == 'A' || (e.target.tagName == 'SPAN' && e.target.textContent == 'Formula')) // used in Flow editor to detect when a formula is added or opened
+	else if((e.target.tagName == 'A' && !e.target.href.includes('javascript:')) || (e.target.tagName == 'SPAN' && e.target.textContent == 'Formula')) // used in Flow editor to detect when a formula is added or opened
 		setTimeout(swapEditor, 300)
 	else {
 		let selection = e.path.filter((s)=>{ return s.tagName?.toLowerCase() == 'lightning-base-combobox-item'})[0]
 		if(!selection && e.target.tagName == 'SELECT')
 			selection = e.target
-		if(selection && app)
-			setTimeout(app.pullFromSource, 200)
-		else
-			return e
+		if(selection && app || (e.target.tagName == "A" && e.target.href.includes('javascript:')))
+			setTimeout(app.pullFromSource, 100)
 	}
 }
 document.addEventListener('mouseup', checkClicks)
