@@ -28,7 +28,6 @@ swapEditor = ()=>{
 	}
 	if(!formulaEditorOuter)
 		formulaEditorOuter = document.querySelector('div[builder_platform_interaction-resourcedtextarea_resourcedtextarea].property-input') // flow editor
-console.log(formulaEditorOuter)
 
 	if(formulaEditorOuter && insertFieldButton == null) {
 		let fieldSelector = document.getElementById('fieldSelector')
@@ -46,7 +45,7 @@ console.log(formulaEditorOuter)
 			Vue.use(VueMention)
 			app = new Vue({
 				template: `
-				<div id="app" :class="theme + ' highlight-keywords match-braces rainbow-braces'">
+				<div id="app" :class="theme">
 					<header data-plugin-header="highlight-keywords"></header>
 					<header data-plugin-header="show-invisibles"></header>
 					<Mentionable ref="suggestions" :keys="triggerKeys" @caret="updateCaretPosition" :items="functionValues" placement="right-start" omit-key>
@@ -59,7 +58,8 @@ console.log(formulaEditorOuter)
 							</option>
 						</select>
 						<label for="fontSizeSelector" style="color:black">Font size:</label>
-						<input type="range" @change="updateFontSize" min="12" max="18" id="fontSizeSelector" name="fontSizeSelector" v-model="fontSize" class="slider"/><i style="color:black">{{ fontSize }}</i>
+						<input type="range" @change="updateFontSize" min="12" max="18" id="fontSizeSelector" name="fontSizeSelector" v-model="fontSize" class="slider"/>
+						<i style="color:black">{{ fontSize }}</i>
 						<br/>
 					</div>
 				</div>`,
@@ -90,6 +90,11 @@ console.log(formulaEditorOuter)
 						return Prism.highlight(code, Prism.languages.sfdx, "sfdx")
 					},
 					updateSourcePosition(o) {
+						// add more controls, like reverse indent
+						// if(o.ctrlKey) {
+						// 	if(o.key == "[")
+
+						// }
 						this.formulaEditor.selectionStart = o.target.selectionStart
 						this.formulaEditor.selectionEnd = o.target.selectionEnd
 					},
@@ -133,12 +138,15 @@ console.log(formulaEditorOuter)
 							y: inputY + spanY,
 						}
 					},
-					pushToSource(i,s) { this.formulaEditor.value = this.content },
-					pullFromSource(i,s) { this.content = this.formulaEditor.value },
+					pushToSource() {
+						this.formulaEditor.value = this.content
+						this.formulaEditor.dispatchEvent(new Event('change'))
+					},
+					pullFromSource() { this.content = this.formulaEditor.value },
+					focusEditor() { this.$children[0].input.focus() },
 					updateFontSize() { document.documentElement.style.setProperty('--fontSize', this.fontSize + "px") }
 				}
 			})
-			formulaEditor.hidden = true
 			formulaEditor.style.display = "none"
 			mountPoint = document.createElement('DIV')
 			mountPoint.id = 'mountPoint'
@@ -147,8 +155,10 @@ console.log(formulaEditorOuter)
 		}
 	}
 }
-const checkClicks = (e)=>{
-	if(e.target.tagName == 'A' || (e.target.tagName == 'SPAN' && e.target.textContent == 'Formula')) // used in Flow editor to detect when a formula is added or opened
+let checkClicks = (e)=>{
+	if(e.target.className.includes('prism-editor-wrapper'))
+		app.focusEditor()
+	else if(e.target.tagName == 'A' || (e.target.tagName == 'SPAN' && e.target.textContent == 'Formula')) // used in Flow editor to detect when a formula is added or opened
 		setTimeout(swapEditor, 300)
 	else {
 		let selection = e.path.filter((s)=>{ return s.tagName?.toLowerCase() == 'lightning-base-combobox-item'})[0]
@@ -156,6 +166,8 @@ const checkClicks = (e)=>{
 			selection = e.target
 		if(selection && app)
 			setTimeout(app.pullFromSource, 200)
+		else
+			return e
 	}
 }
 document.addEventListener('mouseup', checkClicks)
