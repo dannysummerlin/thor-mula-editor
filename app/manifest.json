@@ -1,7 +1,7 @@
 {
 	"name": "EditorElectric for Salesforce",
 	"description": "Electrify your formulas - get functions and object fields with the '?' key and adds syntax highlighting in dark and light mode",
-	"version": "1.2",
+	"version": "1.4",
 	"manifest_version": 2,
 	"page_action": {
 		"default_icon": "images/sf-editorelectric32.png",

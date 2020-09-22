@@ -19,8 +19,12 @@ swapEditor = ()=>{
 	var insertFieldButton = null
 	if(formulaEditorOuter)
 		insertFieldButton = document.querySelector('input[name=insertField]') // don't replace the advanced editor
-	if(!formulaEditorOuter)
+	if(!formulaEditorOuter) {
 		formulaEditorOuter = document.getElementsByClassName('pbWizardBody')[0] // new formula
+		const isFormula = document.getElementById('isformula')
+		if(formulaEditorOuter && isFormula?.value == 0)
+			formulaEditorOuter = null
+	}
 	if(!formulaEditorOuter) {
 		formulaEditorOuter = document.getElementById('ValidationFormula')?.parentElement // validation rule
 		if(formulaEditorOuter)
@@ -162,7 +166,7 @@ const checkClicks = (e)=>{
 		let selection = e.path.filter((s)=>{ return s.tagName?.toLowerCase() == 'lightning-base-combobox-item'})[0]
 		if(!selection && e.target.tagName == 'SELECT')
 			selection = e.target
-		if(selection && app || (e.target.tagName == "A" && e.target.href.includes('javascript:')))
+		if(app && (selection || e.target.id == "fieldInsertButton" || (e.target.tagName == "A" && e.target.href.includes('javascript:'))))
 			setTimeout(app.pullFromSource, 100)
 	}
 }
